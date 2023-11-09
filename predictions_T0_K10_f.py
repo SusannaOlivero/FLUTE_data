@@ -20,7 +20,7 @@ with open("/FLUTE_data/FLUTE_train.json") as f:
     data_train = json.load(f)
 
 k = 10
-method = 'random'
+method = 'figure'
 
 input_data = []
 
@@ -148,5 +148,5 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("prediction_t0_k10_r","w") as f:
+with open("prediction_t0_k10_f","w") as f:
     f.write(json.dumps(data,indent=4))
