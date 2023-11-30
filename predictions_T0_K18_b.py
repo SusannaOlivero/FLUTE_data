@@ -19,7 +19,7 @@ model = AutoModelForCausalLM.from_pretrained(model_tag, token=MY_TOKEN, torch_dt
 with open("home/solivero/FLUTE_data/FLUTE_train.json") as f:
     data_train = json.load(f)
 
-k = 2
+k = 3
 k2 = 3*k - 1
 
 input_data = []
@@ -106,5 +106,5 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("home/solivero/prediction_t0_k6_b.json","w") as f:
+with open("home/solivero/prediction_t0_k18_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
