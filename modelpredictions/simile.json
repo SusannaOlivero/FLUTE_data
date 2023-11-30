@@ -29,14 +29,14 @@
     },
     {
         "id": 10,
-        "premise": "It was rapidly becoming smaller and smaller on the horizon, turning into nothing but a silver.",
+        "premise": "It was rapidly becoming smaller and smaller on the horizon, turning into nothing but a sliver.",
         "hypothesis": "It was becoming nothing but a sliver on the horizon looking like a closing eye .",
         "predicted_label": "Entailment",
         "model_explanation": "A sliver is a very small, thin object, so it is being compared to if it were fading away."
     },
     {
         "id": 10,
-        "premise": "It was rapidly becoming larger and larger on the horizon, turning into silver.",
+        "premise": "It was rapidly becoming larger and larger on the horizon, turning into sliver.",
         "hypothesis": "It was becoming nothing but a sliver on the horizon looking like a closing eye .",
         "predicted_label": "Contradiction",
         "model_explanation": "A sliver is a very small, thin, translucent object, so saying it is turning into nothing would imply it has become extremely small."
