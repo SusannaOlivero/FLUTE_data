@@ -1,3 +1,11 @@
+# Script for applying DREAM at FLUTE Dataset
+# Take the validation set and the test set and insert for each example the Scene Elaboration given by Dream
+# The "contest" is given by these four elements:
+#  1. M : motivation of character(s) before S.
+#  2. E: emotion of character(s) after S.
+#  3. ROT : general Rule of Thumb (ROT) about whether action described in S is socially acceptable or not (also known as social norm).
+#  4. Con: likely consequence of action in S
+
 import torch
 import transformers
 import numpy as np
