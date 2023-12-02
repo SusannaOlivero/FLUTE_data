@@ -32,7 +32,7 @@ for i in range(len(data)):
     label = text.split("Explanation")[0].lstrip()
     label = label.split("Answer :")[1].lstrip()
     data[i]["predicted_label"] = label
-    explanation = text.split("Explanation")[1].lstrip()
+    explanation = text.split("Explanation :")[1].lstrip()
     data[i]["model_explanation"] = explanation
 
 with open("home/solivero/dream_flute_system1.json","w") as f:
