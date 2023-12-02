@@ -1,3 +1,6 @@
+# Script for testing "allenai/System1_FigLang2022"
+# Apply the dream_flute model (system1) to FLUTE test set and verify the results
+
 import torch
 import transformers
 import numpy as np
