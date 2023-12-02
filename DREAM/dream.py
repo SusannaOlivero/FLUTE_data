@@ -30,6 +30,7 @@ for k in dream_dim:
     input_ids = tokenizer.encode(input_string, return_tensors="pt")
     output = model.generate(input_ids, max_length=200)
     text = tokenizer.batch_decode(output, skip_special_tokens=True)
+    #["$answer$ = It's wrong to damage other people's property."]  
     text = text.split("$answer$ =")[1].lstrip()
     data[i][k] = text
 
