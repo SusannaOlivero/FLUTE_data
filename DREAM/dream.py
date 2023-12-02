@@ -23,11 +23,11 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 model = AutoModelForSeq2SeqLM.from_pretrained("allenai/DREAM", torch_dtype=torch.float16, device_map=device)
 tokenizer = AutoTokenizer.from_pretrained("t5-11b", torch_dtype=torch.float16, device_map=device)
 
+dream_dim = ["motivation", "emotion", "rot", "consequence"]
+
 # Validation Set
 with open("home/solivero/FLUTE_data/FLUTE_val.json") as f:
     data = json.load(f)
-    
-dream_dim = ["motivation", "emotion", "rot", "consequence"]
 
 for k in dream_dim:
   for i in range(len(data)):
@@ -50,8 +50,6 @@ del data
 # Test Set
 with open("home/solivero/FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
-    
-dream_dim = ["motivation", "emotion", "rot", "consequence"]
 
 for k in dream_dim:
   for i in range(len(data)):
