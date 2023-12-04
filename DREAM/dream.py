@@ -25,43 +25,82 @@ tokenizer = AutoTokenizer.from_pretrained("t5-11b", torch_dtype=torch.float16, d
 
 dream_dim = ["motivation", "emotion", "rot", "consequence"]
 
-# Validation Set
+
+## VALIDATION SET
+
 with open("home/solivero/FLUTE_data/FLUTE_val.json") as f:
     data = json.load(f)
-
+    
 for k in dream_dim:
-  for i in range(len(data)):
-    premise = data[i]["premise"]
-    hypothesis = data[i]["hypothesis"]
-    situation = "Premise: '"+premise+"'. Hypothesis: '"+hypothesis+"'."
-    input_string = "$answer$ ; $question$ = [SITUATION] "+situation+" [QUERY] "+k
-    input_ids = tokenizer.encode(input_string, return_tensors="pt")
-    output = model.generate(input_ids, max_length=200)
-    text = tokenizer.batch_decode(output, skip_special_tokens=True)
-    #["$answer$ = It's wrong to damage other people's property."]  
-    text = text.split("$answer$ =")[1].lstrip()
-    data[i][k] = text
+    p = f"premise-{k}"
+    po = "output-"+p
+    h = f"hypothesis-{k}"
+    ho = "output-"+h
+    for i in range(len(data)):
+        premise = data[i]["premise"]
+        input_string = "$answer$ ; $question$ = [SITUATION] "+premise+" [QUERY] "+k
+        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        output = model.generate(input_ids, max_length=200)
+        text = tokenizer.batch_decode(output, skip_special_tokens=True)    #["$answer$ = It's wrong to damage other people's property."]
+        data[i][po] = text  
+        try:
+            text = text.split("$answer$ =")[1].lstrip()
+            data[i][p] = text
+        except:
+            data[i][p] = "to do"
+          
+        hypothesis = data[i]["hypothesis"]
+        input_string = "$answer$ ; $question$ = [SITUATION] "+hypothesis+" [QUERY] "+k
+        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        output = model.generate(input_ids, max_length=200)
+        text = tokenizer.batch_decode(output, skip_special_tokens=True)    
+        data[i][ho] = text  
+        try:
+            text = text.split("$answer$ =")[1].lstrip()
+            data[i][h] = text
+        except:
+            data[i][h] = "to do"
 
 with open("home/solivero/dream_val.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
 
-# Test Set
+
+## TEST SET
+
 with open("home/solivero/FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
-
+    
 for k in dream_dim:
-  for i in range(len(data)):
-    premise = data[i]["premise"]
-    hypothesis = data[i]["hypothesis"]
-    situation = "Premise: '"+premise+"'. Hypothesis: '"+hypothesis+"'."
-    input_string = "$answer$ ; $question$ = [SITUATION] "+situation+" [QUERY] "+k
-    input_ids = tokenizer.encode(input_string, return_tensors="pt")
-    output = model.generate(input_ids, max_length=200)
-    text = tokenizer.batch_decode(output, skip_special_tokens=True)
-    text = text.split("$answer$ =")[1].lstrip()
-    data[i][k] = text
+    p = f"premise-{k}"
+    po = "output-"+p
+    h = f"hypothesis-{k}"
+    ho = "output-"+h
+    for i in range(len(data)):
+        premise = data[i]["premise"]
+        input_string = "$answer$ ; $question$ = [SITUATION] "+premise+" [QUERY] "+k
+        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        output = model.generate(input_ids, max_length=200)
+        text = tokenizer.batch_decode(output, skip_special_tokens=True)    #["$answer$ = It's wrong to damage other people's property."]
+        data[i][po] = text  
+        try:
+            text = text.split("$answer$ =")[1].lstrip()
+            data[i][p] = text
+        except:
+            data[i][p] = "to do"
+          
+        hypothesis = data[i]["hypothesis"]
+        input_string = "$answer$ ; $question$ = [SITUATION] "+hypothesis+" [QUERY] "+k
+        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        output = model.generate(input_ids, max_length=200)
+        text = tokenizer.batch_decode(output, skip_special_tokens=True)    
+        data[i][ho] = text  
+        try:
+            text = text.split("$answer$ =")[1].lstrip()
+            data[i][h] = text
+        except:
+            data[i][h] = "to do"
 
 with open("home/solivero/dream_test.json","w") as f:
     f.write(json.dumps(data,indent=4))
