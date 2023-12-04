@@ -25,7 +25,7 @@ for i in range(len(data)):
     premise = data[i]["premise"]
     hypothesis = data[i]["hypothesis"]
     input_string = "Premise: "+premise+" Hypothesis: "+hypothesis+". Is there a contradiction or entailment between the premise and hypothesis?"
-    input_ids = tokenizer.encode(input_string, return_tensors="pt")
+    input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
     output = model.generate(input_ids, max_length=200)
     text = tokenizer.batch_decode(output, skip_special_tokens=True)
     data[i]["output_dream"] = text
