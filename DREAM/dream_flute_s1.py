@@ -30,11 +30,15 @@ for i in range(len(data)):
     text = tokenizer.batch_decode(output, skip_special_tokens=True)
     data[i]["output_dream"] = text
     #["Answer : Contradiction. Explanation : Most people would not be happy to see someone else's new car that they cannot afford because it is way out of their budget"]
-    #label = text.split("Explanation")[0].lstrip()
-    #label = label.split("Answer :")[1].lstrip()
-    #data[i]["predicted_label"] = label
-    #explanation = text.split("Explanation :")[1].lstrip()
-    #data[i]["model_explanation"] = explanation
+    try:
+        label = text.split("Explanation")[0].lstrip()
+        label = label.split("Answer :")[1].lstrip()
+        data[i]["predicted_label"] = label
+        explanation = text.split("Explanation :")[1].lstrip()
+        data[i]["model_explanation"] = explanation
+    except:
+        data[i]["predicted_label"] = "to do"
+        data[i]["model_explanation"] = "to do"    
 
 with open("home/solivero/dream_flute_system1.json","w") as f:
     f.write(json.dumps(data,indent=4))
