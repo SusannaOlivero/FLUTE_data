@@ -39,7 +39,7 @@ for k in dream_dim:
     for i in range(len(data)):
         premise = data[i]["premise"]
         input_string = "$answer$ ; $question$ = [SITUATION] "+premise+" [QUERY] "+k
-        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
         output = model.generate(input_ids, max_length=200)
         text = tokenizer.batch_decode(output, skip_special_tokens=True)    #["$answer$ = It's wrong to damage other people's property."]
         data[i][po] = text  
@@ -51,7 +51,7 @@ for k in dream_dim:
           
         hypothesis = data[i]["hypothesis"]
         input_string = "$answer$ ; $question$ = [SITUATION] "+hypothesis+" [QUERY] "+k
-        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
         output = model.generate(input_ids, max_length=200)
         text = tokenizer.batch_decode(output, skip_special_tokens=True)    
         data[i][ho] = text  
@@ -80,7 +80,7 @@ for k in dream_dim:
     for i in range(len(data)):
         premise = data[i]["premise"]
         input_string = "$answer$ ; $question$ = [SITUATION] "+premise+" [QUERY] "+k
-        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
         output = model.generate(input_ids, max_length=200)
         text = tokenizer.batch_decode(output, skip_special_tokens=True)    #["$answer$ = It's wrong to damage other people's property."]
         data[i][po] = text  
@@ -92,7 +92,7 @@ for k in dream_dim:
           
         hypothesis = data[i]["hypothesis"]
         input_string = "$answer$ ; $question$ = [SITUATION] "+hypothesis+" [QUERY] "+k
-        input_ids = tokenizer.encode(input_string, return_tensors="pt")
+        input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
         output = model.generate(input_ids, max_length=200)
         text = tokenizer.batch_decode(output, skip_special_tokens=True)    
         data[i][ho] = text  
