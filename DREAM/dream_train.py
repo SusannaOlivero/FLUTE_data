@@ -28,7 +28,7 @@ dream_dim = ["motivation", "emotion", "rot", "consequence"]
 
 ## TRAIN SET
 
-with open("home/solivero/FLUTE_data/FLUTE_train.json") as f:
+with open("FLUTE_data/FLUTE_train.json") as f:
     data = json.load(f)
     
 for k in dream_dim:
@@ -61,5 +61,5 @@ for k in dream_dim:
         except:
             data[i][h] = "to do"
 
-with open("home/solivero/dream_train.json","w") as f:
+with open("dream_train.json","w") as f:
     f.write(json.dumps(data,indent=4))
