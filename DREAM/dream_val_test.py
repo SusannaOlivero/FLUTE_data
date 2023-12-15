@@ -28,7 +28,7 @@ dream_dim = ["motivation", "emotion", "rot", "consequence"]
 
 ## VALIDATION SET
 
-with open("home/solivero/FLUTE_data/FLUTE_val.json") as f:
+with open("FLUTE_data/FLUTE_val.json") as f:
     data = json.load(f)
     
 for k in dream_dim:
@@ -61,7 +61,7 @@ for k in dream_dim:
         except:
             data[i][h] = "to do"
 
-with open("home/solivero/dream_val.json","w") as f:
+with open("dream_val.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
@@ -69,7 +69,7 @@ del data
 
 ## TEST SET
 
-with open("home/solivero/FLUTE_data/FLUTE_test.json") as f:
+with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
     
 for k in dream_dim:
@@ -102,5 +102,5 @@ for k in dream_dim:
         except:
             data[i][h] = "to do"
 
-with open("home/solivero/dream_test.json","w") as f:
+with open("dream_test.json","w") as f:
     f.write(json.dumps(data,indent=4))
