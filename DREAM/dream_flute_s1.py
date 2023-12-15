@@ -18,7 +18,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 model = AutoModelForSeq2SeqLM.from_pretrained("allenai/System1_FigLang2022", torch_dtype=torch.float16, device_map=device)
 tokenizer = AutoTokenizer.from_pretrained("t5-3b", torch_dtype=torch.float16, device_map=device)
 
-with open("home/solivero/FLUTE_data/FLUTE_test.json") as f:
+with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
 
 for i in range(len(data)):
@@ -40,5 +40,5 @@ for i in range(len(data)):
         data[i]["predicted_label"] = "to do"
         data[i]["model_explanation"] = "to do"    
 
-with open("home/solivero/dream_flute_system1.json","w") as f:
+with open("dream_flute_system1.json","w") as f:
     f.write(json.dumps(data,indent=4))
