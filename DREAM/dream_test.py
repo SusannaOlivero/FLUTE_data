@@ -52,5 +52,5 @@ for k in dream_dim:
         text = text.split("$answer$ =")[1].lstrip()
         data[i][h] = text
 
-with open("dream_test.json","w") as f:
+with open("dream_test_SE.json","w") as f:
     f.write(json.dumps(data,indent=4))
