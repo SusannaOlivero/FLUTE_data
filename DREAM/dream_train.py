@@ -33,33 +33,25 @@ with open("FLUTE_data/FLUTE_train.json") as f:
     
 for k in dream_dim:
     p = f"premise-{k}"
-    po = "output-"+p
     h = f"hypothesis-{k}"
-    ho = "output-"+h
     for i in range(len(data)):
         premise = data[i]["premise"]
         input_string = "$answer$ ; $question$ = [SITUATION] "+premise+" [QUERY] "+k
         input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
         output = model.generate(input_ids, max_length=200)
         text = tokenizer.batch_decode(output, skip_special_tokens=True)    #["$answer$ = It's wrong to damage other people's property."]
-        data[i][po] = text  
-        try:
-            text = text.split("$answer$ =")[1].lstrip()
-            data[i][p] = text
-        except:
-            data[i][p] = "to do"
-          
+        text = text[0]
+        text = text.split("$answer$ =")[1].lstrip()
+        data[i][p] = text
+
         hypothesis = data[i]["hypothesis"]
         input_string = "$answer$ ; $question$ = [SITUATION] "+hypothesis+" [QUERY] "+k
         input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
         output = model.generate(input_ids, max_length=200)
-        text = tokenizer.batch_decode(output, skip_special_tokens=True)    
-        data[i][ho] = text  
-        try:
-            text = text.split("$answer$ =")[1].lstrip()
-            data[i][h] = text
-        except:
-            data[i][h] = "to do"
+        text = tokenizer.batch_decode(output, skip_special_tokens=True)
+        text = text[0]
+        text = text.split("$answer$ =")[1].lstrip()
+        data[i][h] = text
 
 with open("dream_train.json","w") as f:
     f.write(json.dumps(data,indent=4))
