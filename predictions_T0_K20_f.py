@@ -135,7 +135,7 @@ for i in range(len(data)):
     prompt += examples
     request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
     prompt += request
-    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    inputs = tokenizer(prompt, return_token_type_ids=False, return_tensors="pt").to(device)
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
