@@ -19,7 +19,7 @@ model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN,
 with open("FLUTE_data/FLUTE_train.json") as f:
     data_train = json.load(f)
 
-k = 50
+k = 5
 method = 'random'
 
 input_data = []
@@ -149,5 +149,5 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("prediction_t0_k50_r.json","w") as f:
+with open("prediction_t0_k5_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
