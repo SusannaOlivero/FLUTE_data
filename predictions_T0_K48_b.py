@@ -101,9 +101,9 @@ for i in range(len(data)):
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
-    explanation_ = text.split("premise:")[0].lstrip()
-    explanation_ = explanation_.split("Explanation:")[1].lstrip().rstrip('\n')
     data[i]["predicted_label"] = predictedlabel
+    explanation_ = text.split("Explanation:")[1].lstrip()
+    explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
 with open("prediction_t0_k48_b.json","w") as f:
