@@ -19,7 +19,7 @@ model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN,
 with open("FLUTE_data/FLUTE_train.json") as f:
     data_train = json.load(f)
 
-k = 8
+k = 7
 k2 = 3*k - 1
 
 input_data = []
@@ -102,9 +102,9 @@ for i in range(len(data)):
     elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
     data[i]["predicted_label"] = predictedlabel
-    explanation_ = text.split("Explanation:")[1].lstrip()
-    explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
+    explanation_ = text.split("premise:")[0].lstrip()
+    explanation_ = explanation_.split("Explanation:")[1].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("prediction_t0_k48_b.json","w") as f:
+with open("prediction_t0_k42_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
