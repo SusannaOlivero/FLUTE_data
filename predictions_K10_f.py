@@ -151,3 +151,33 @@ for i in range(len(data)):
 
 with open("prediction2_t0_k10_f.json","w") as f:
     f.write(json.dumps(data,indent=4))
+
+del data
+
+with open("FLUTE_data/FLUTE_val_2.json") as f:
+    data = json.load(f)
+
+for i in range(len(data)):
+    premise = data[i]["premise"]
+    hypothesis = data[i]["hypothesis"]
+    prompt = "Find if the 'premise' entails or contradicts the 'hypothesis'.\n"
+    prompt += "Here you can find some examples of answers:\n"
+    prompt += examples
+    request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
+    prompt += request
+    inputs = tokenizer(prompt, return_token_type_ids=False, return_tensors="pt").to(device)
+    generate_ids = model.generate(**inputs, do_sample=True, temperature=0.4, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
+    text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+    text = text.replace(prompt, '').strip()
+    label_ = text.split("Explanation:")[0].lstrip()
+    if "Entails." in label_:
+            predictedlabel = "Entailment"
+    elif "Contradicts." in label_:
+            predictedlabel = "Contradiction"
+    explanation_ = text.split("premise:")[0].lstrip()
+    explanation_ = explanation_.split("Explanation:")[1].lstrip().rstrip('\n')
+    data[i]["predicted_label"] = predictedlabel
+    data[i]["model_explanation"] = explanation_
+
+with open("prediction2_t04_k10_f.json","w") as f:
+    f.write(json.dumps(data,indent=4))
