@@ -123,7 +123,7 @@ for i in range(len(data)):
     request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
     prompt += request
     inputs = tokenizer(prompt, return_token_type_ids=False, return_tensors="pt").to(device)
-    generate_ids = model.generate(**inputs, do_sample=True, temperature=0.4, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
+    generate_ids = model.generate(**inputs, do_sample=True, temperature=0.3, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
     label_ = text.split("Explanation:")[0].lstrip()
@@ -136,5 +136,5 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("prediction2_t04_k6_b.json","w") as f:
+with open("prediction2_t03_k6_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
