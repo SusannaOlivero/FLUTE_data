@@ -139,8 +139,7 @@ for i in range(len(data)):
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
-    label_ = text.split("Explanation:")[0].lstrip()
-    explanation_ = text.split("Explanation:")[1].lstrip()
+    label_, explanation_ = text.split("Explanation:")
     if "Entails." in label_:
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
@@ -148,10 +147,6 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
-    #explanation_ = text.split("premise:")[0].lstrip()
-    #explanation_ = explanation_.split("Explanation:")[1].lstrip().rstrip('\n')
-    #data[i]["predicted_label"] = predictedlabel
-    #data[i]["model_explanation"] = explanation_
 
 with open("prediction2_t0_k5_f.json","w") as f:
     f.write(json.dumps(data,indent=4))
@@ -173,8 +168,7 @@ for i in range(len(data)):
     generate_ids = model.generate(**inputs, do_sample=True, temperature=0.3, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
-    label_ = text.split("Explanation:")[0].lstrip()
-    explanation_ = text.split("Explanation:")[1].lstrip()
+    label_, explanation_ = text.split("Explanation:")
     if "Entails." in label_:
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
@@ -182,10 +176,6 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
-    #explanation_ = text.split("premise:")[0].lstrip()
-    #explanation_ = explanation_.split("Explanation:")[1].lstrip().rstrip('\n')
-    #data[i]["predicted_label"] = predictedlabel
-    #data[i]["model_explanation"] = explanation_
 
 with open("prediction2_t03_k5_f.json","w") as f:
     f.write(json.dumps(data,indent=4))
