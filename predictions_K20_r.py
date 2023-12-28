@@ -122,7 +122,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 150
+length_max = token_count + 210
 
 with open("FLUTE_data/FLUTE_val_2.json") as f:
     data = json.load(f)
