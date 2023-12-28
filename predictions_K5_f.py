@@ -139,7 +139,7 @@ for i in range(len(data)):
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
-    label_, explanation_ = text.split("Explanation:")
+    label_, explanation_ = text.split("Explanation:", 1)
     if "Entails." in label_:
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
@@ -168,7 +168,7 @@ for i in range(len(data)):
     generate_ids = model.generate(**inputs, do_sample=True, temperature=0.3, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
-    label_, explanation_ = text.split("Explanation:")
+    label_, explanation_ = text.split("Explanation:", 1)
     if "Entails." in label_:
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
