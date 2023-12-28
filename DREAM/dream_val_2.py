@@ -28,7 +28,7 @@ dream_dim = ["motivation", "emotion", "rot", "consequence"]
 
 ## VALIDATION SET
 
-with open("FLUTE_data/FLUTE_val.json") as f:
+with open("FLUTE_data/FLUTE_val_2.json") as f:
     data = json.load(f)
     
 for k in dream_dim:
@@ -53,5 +53,5 @@ for k in dream_dim:
         text = text.split("$answer$ =")[1].lstrip()
         data[i][h] = text
 
-with open("dream_val.json","w") as f:
+with open("dream_val_2.json","w") as f:
     f.write(json.dumps(data,indent=4))
