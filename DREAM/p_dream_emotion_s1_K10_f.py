@@ -16,7 +16,7 @@ model_tag = "meta-llama/Llama-2-7b-chat-hf"
 tokenizer = AutoTokenizer.from_pretrained(model_tag, use_auth_token=MY_TOKEN)
 model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN, torch_dtype=torch.float16, device_map=device)
 
-with open("FLUTE_data/DREAM/DreamData/FLUTE_train_2.json") as f:
+with open("FLUTE_data/DREAM/DreamData/dream_train2_SE.json") as f:
     data_train = json.load(f)
 
 k = 10
@@ -104,10 +104,13 @@ else:
     else:
         input_data += random.sample(data_train, 1)
 
+# PROMPT style 1
 output_text = ""
 for item in input_data:
     output_text += f"\npremise: {item['premise']}\n"
+    output_text += f"\npremise-emotion: {item['premise-emotion']}\n"
     output_text += f"hypothesis: {item['hypothesis']}\n"
+    output_text += f"hypothesis-emotion: {item['hypothesis-emotion']}\n"
     label = item['label']
     if "Entailment" in label:
         answer = "Entails."
@@ -124,16 +127,15 @@ tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
 length_max = token_count + 210
 
-with open("FLUTE_data/FLUTE_val_2.json") as f:
+with open("FLUTE_data/DREAM/DreamData/dream_val2_SE.json") as f:
     data = json.load(f)
 
 for i in range(len(data)):
-    premise = data[i]["premise"]
-    hypothesis = data[i]["hypothesis"]
     prompt = "Find if the 'premise' entails or contradicts the 'hypothesis'.\n"
     prompt += "Here you can find some examples of answers:\n"
     prompt += examples
-    request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
+    request = "\npremise: "+data[i]["premise"]+"\npremise-emotion: "+data[i]["premise-emotion"]
+    request += "\nhypothesis: "+data[i]["hypothesis"]+"\nhypothesis-emotion: "+data[i]["hypothesis-emotion"]
     prompt += request
     inputs = tokenizer(prompt, return_token_type_ids=False, return_tensors="pt").to(device)
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
@@ -148,21 +150,20 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("prediction2_t0_k10_f.json","w") as f:
+with open("p_dream_emotion_t0_k10_f.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
 
-with open("FLUTE_data/FLUTE_val_2.json") as f:
+with open("FLUTE_data/DREAM/DreamData/dream_val2_SE.json") as f:
     data = json.load(f)
 
 for i in range(len(data)):
-    premise = data[i]["premise"]
-    hypothesis = data[i]["hypothesis"]
     prompt = "Find if the 'premise' entails or contradicts the 'hypothesis'.\n"
     prompt += "Here you can find some examples of answers:\n"
     prompt += examples
-    request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
+    request = "\npremise: "+data[i]["premise"]+"\npremise-emotion: "+data[i]["premise-emotion"]
+    request += "\nhypothesis: "+data[i]["hypothesis"]+"\nhypothesis-emotion: "+data[i]["hypothesis-emotion"]
     prompt += request
     inputs = tokenizer(prompt, return_token_type_ids=False, return_tensors="pt").to(device)
     generate_ids = model.generate(**inputs, do_sample=True, temperature=0.3, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
@@ -177,5 +178,5 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("prediction2_t03_k10_f.json","w") as f:
+with open("p_dream_emotion_t03_k10_f.json","w") as f:
     f.write(json.dumps(data,indent=4))
