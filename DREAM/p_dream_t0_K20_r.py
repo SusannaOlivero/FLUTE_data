@@ -19,7 +19,7 @@ model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN,
 with open("FLUTE_data/DREAM/DreamData/dream_train2_SE.json") as f:
     data_train = json.load(f)
 
-k = 10
+k = 20
 method = 'random'
 
 input_data = []
@@ -151,7 +151,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_emotion_t0_k10_r.json","w") as f:
+with open("p_dream_emotion_t0_k20_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -195,7 +195,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_motivation_t0_k10_r.json","w") as f:
+with open("p_dream_motivation_t0_k20_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -239,7 +239,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_rot_t0_k10_r.json","w") as f:
+with open("p_dream_rot_t0_k20_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -283,7 +283,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_consequence_t0_k10_r.json","w") as f:
+with open("p_dream_consequence_t0_k20_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -336,6 +336,6 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_SE_t0_k10_r.json","w") as f:
+with open("p_dream_SE_t0_k20_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
