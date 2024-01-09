@@ -198,7 +198,7 @@ with open("p_dream_motivation_t0_k10_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
-# 1.3) Social Norm (ROT)
+# 1.3) Social Norm 
 output_text = ""
 for item in input_data:
     output_text += f"\npremise: {item['premise']} social-norm: {item['premise-rot']}\n"
@@ -298,8 +298,8 @@ hc = "hypothesis-consequence"
     
 output_text = ""
 for item in input_data:
-    output_text += f"\npremise: {item['premise']} [motivation] {item[pm]} [emotion] {item[pe]} [social norm] {item[pr]} [consequence] {item[pc]}\n"
-    output_text += f"hypothesis: {item['hypothesis']} [motivation] {item[hm]} [emotion] {item[he]} [social norm] {item[hr]} [consequence] {item[hc]}\n"
+    output_text += f"\npremise: {item['premise']} [motivation] {item[pm]} [emotion] {item[pe]} [social norm] {item[pr]} {item[pc]}\n"
+    output_text += f"hypothesis: {item['hypothesis']} [motivation] {item[hm]} [emotion] {item[he]} [social norm] {item[hr]} {item[hc]}\n"
     label = item['label']
     if "Entailment" in label:
         answer = "Entails."
@@ -319,8 +319,8 @@ for i in range(len(data)):
     prompt += "Let's think step by step.\n"
     prompt += "Here you can find some examples of answers:\n"
     prompt += examples
-    request = f"\npremise: {premise} [motivation]: {data[i][pm]} [emotion]: {data[i][pe]} [social norm]: {data[i][pr]} [consequence]: {data[i][pc]}\n"
-    request += f"hypothesis: {hypothesis} [motivation]: {data[i][hm]} [emotion]: {data[i][he]} [social norm]: {data[i][hr]} [consequence]: {data[i][hc]}\n"
+    request = f"\npremise: {premise} [motivation] {data[i][pm]} [emotion] {data[i][pe]} [social norm] {data[i][pr]} {data[i][pc]}\n"
+    request += f"hypothesis: {hypothesis} [motivation] {data[i][hm]} [emotion] {data[i][he]} [social norm] {data[i][hr]} {data[i][hc]}\n"
     prompt += request
     inputs = tokenizer(prompt, return_token_type_ids=False, return_tensors="pt").to(device)
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
