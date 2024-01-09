@@ -106,6 +106,7 @@ else:
 
 del data_train
 
+
 ## PROMPT style 2
 with open("FLUTE_data/DREAM/DreamData/dream_val2_SE.json") as f:
     data_val = json.load(f)
@@ -126,7 +127,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 250
+length_max = token_count + 270
 
 data = data_val
 for i in range(len(data)):
@@ -170,7 +171,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 250
+length_max = token_count + 270
 
 data = data_val
 for i in range(len(data)):
@@ -214,7 +215,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 250
+length_max = token_count + 270
 
 data = data_val
 for i in range(len(data)):
@@ -258,7 +259,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 250
+length_max = token_count + 270
 
 data = data_val
 for i in range(len(data)):
@@ -311,7 +312,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 250
+length_max = token_count + 300
 
 data = data_val
 for i in range(len(data)):
@@ -338,5 +339,3 @@ for i in range(len(data)):
 with open("p_dream_SE_t0_k10_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
-
-
