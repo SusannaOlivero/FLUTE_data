@@ -320,8 +320,8 @@ for i in range(len(data)):
     prompt += "Let's think step by step.\n"
     prompt += "Here you can find some examples of answers:\n"
     prompt += examples
-    request = f"\npremise: {premise} [motivation] {data[i][pm]} [emotion] {data[i][pe]} [social norm] {data[i][pr]} {data[i][pc]}\n"
-    request += f"hypothesis: {hypothesis} [motivation] {data[i][hm]} [emotion] {data[i][he]} [social norm] {data[i][hr]} {data[i][hc]}\n"
+    request = f"\npremise: {data[i]['premise']} [motivation] {data[i][pm]} [emotion] {data[i][pe]} [social norm] {data[i][pr]} {data[i][pc]}\n"
+    request += f"hypothesis: {data[i]['hypothesis']} [motivation] {data[i][hm]} [emotion] {data[i][he]} [social norm] {data[i][hr]} {data[i][hc]}\n"
     prompt += request
     inputs = tokenizer(prompt, return_token_type_ids=False, return_tensors="pt").to(device)
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
