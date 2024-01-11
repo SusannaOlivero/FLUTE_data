@@ -54,7 +54,7 @@ for i in range(len(data)):
     finally:
         data[i]["model_explanation"] = explanation_
 
-with open("p_dream_emotion_t0_k10_r.json","w") as f:
+with open("p_dream_emotion_t0_k0_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -91,7 +91,7 @@ for i in range(len(data)):
     finally:
         data[i]["model_explanation"] = explanation_
 
-with open("p_dream_motivation_t0_k10_r.json","w") as f:
+with open("p_dream_motivation_t0_k0_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -128,7 +128,7 @@ for i in range(len(data)):
     finally:
         data[i]["model_explanation"] = explanation_
 
-with open("p_dream_rot_t0_k10_r.json","w") as f:
+with open("p_dream_rot_t0_k0_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -165,7 +165,7 @@ for i in range(len(data)):
     finally:
         data[i]["model_explanation"] = explanation_
 
-with open("p_dream_consequence_t0_k10_r.json","w") as f:
+with open("p_dream_consequence_t0_k0_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -210,6 +210,6 @@ for i in range(len(data)):
     finally:
         data[i]["model_explanation"] = explanation_
 
-with open("p_dream_SE_t0_k10_r.json","w") as f:
+with open("p_dream_SE_t0_k0_r.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
