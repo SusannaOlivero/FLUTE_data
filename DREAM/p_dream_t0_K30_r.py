@@ -259,7 +259,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 400
+length_max = token_count + 350
 
 data = data_val
 for i in range(len(data)):
@@ -312,7 +312,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 370
+length_max = token_count + 400
 
 data = data_val
 for i in range(len(data)):
