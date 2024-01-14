@@ -279,6 +279,8 @@ for i in range(len(data)):
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
+    else:
+        predictedlabel = "Contradiction"    
     data[i]["predicted_label"] = predictedlabel
     try: 
         explanation_ = text.split("Explanation:")[1]
@@ -333,9 +335,11 @@ for i in range(len(data)):
     text = text.replace(prompt, '').strip()
     label_ = text.split("Explanation:")[0]
     if "Entails." in label_:
-            predictedlabel = "Entailment"
+        predictedlabel = "Entailment"
     elif "Contradicts." in label_:
-            predictedlabel = "Contradiction"
+        predictedlabel = "Contradiction"
+    else:
+        predictedlabel = "Contradiction"
     data[i]["predicted_label"] = predictedlabel
     try: 
         explanation_ = text.split("Explanation:")[1]
