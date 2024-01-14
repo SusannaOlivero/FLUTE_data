@@ -327,13 +327,17 @@ for i in range(len(data)):
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
-    label_, explanation_ = text.split("Explanation:", 1)
+    label_ = text.split("Explanation:")[0]
     if "Entails." in label_:
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
     data[i]["predicted_label"] = predictedlabel
-    explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
+    try: 
+        explanation_ = text.split("Explanation:")[1]
+        explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
+    except:
+        explanation_ = "not given - input too long"
     data[i]["model_explanation"] = explanation_
 
 with open("p_dream_SE_t0_k20_r.json","w") as f:
