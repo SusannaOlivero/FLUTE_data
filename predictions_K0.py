@@ -17,7 +17,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_tag, use_auth_token=MY_TOKEN)
 model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN, torch_dtype=torch.float16, device_map=device)
 
 
-with open("FLUTE_data/FLUTE_val_2.json") as f:
+with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
 
 for i in range(len(data)):
@@ -52,12 +52,12 @@ for i in range(len(data)):
     finally:
         data[i]["model_explanation"] = explanation_
 
-with open("prediction2_t0_k0.json","w") as f:
+with open("p_test_t0_k0.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
 
-with open("FLUTE_data/FLUTE_val_2.json") as f:
+with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
 
 for i in range(len(data)):
@@ -92,5 +92,5 @@ for i in range(len(data)):
     finally:
         data[i]["model_explanation"] = explanation_
 
-with open("prediction2_t03_k0.json","w") as f:
+with open("p_test_t03_k0.json","w") as f:
     f.write(json.dumps(data,indent=4))
