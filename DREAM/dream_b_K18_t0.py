@@ -16,7 +16,7 @@ model_tag = "meta-llama/Llama-2-7b-chat-hf"
 tokenizer = AutoTokenizer.from_pretrained(model_tag, use_auth_token=MY_TOKEN)
 model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN, torch_dtype=torch.float16, device_map=device)
 
-with open("FLUTE_data/FLUTE_train.json") as f:
+with open("FLUTE_data/DREAM/DreamData/dream_train_SE.json") as f:
     data_train = json.load(f)
 
 k = 3
@@ -107,7 +107,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_k6_t0_emotion.json","w") as f:
+with open("p_dream_k18_t0_emotion.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -151,7 +151,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_k6_t0_motivation.json","w") as f:
+with open("p_dream_k18_t0_motivation.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -195,7 +195,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_k6_t0_rot.json","w") as f:
+with open("p_dream_k18_t0_rot.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -239,7 +239,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_k6_t0_consequence.json","w") as f:
+with open("p_dream_k18_t0_consequence.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
 
@@ -292,6 +292,6 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_dream_k6_t0_SE.json","w") as f:
+with open("p_dream_k18_t0_SE.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
