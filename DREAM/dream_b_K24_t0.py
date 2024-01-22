@@ -64,7 +64,7 @@ del data_train_simile
 del data_train
 
 ## PROMPT style 2
-with open("FLUTE_data/DREAM/DreamData/dream_test.json") as f:
+with open("FLUTE_data/DREAM/DreamData/dream_test_SE.json") as f:
     data_val = json.load(f)
 
 # 1.1) Emotion
