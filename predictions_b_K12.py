@@ -81,7 +81,7 @@ tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
 length_max = token_count + 220
 
-with open("FLUTE_data/FLUTE_val_2.json") as f:
+with open("FLUTE_data/FLUTE_test.json") as f:    
     data = json.load(f)
 
 for i in range(len(data)):
@@ -106,12 +106,12 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("prediction2_t0_k12_b.json","w") as f:
+with open("p_test_t0_k12_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
 
-with open("FLUTE_data/FLUTE_val_2.json") as f:
+with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
 
 for i in range(len(data)):
@@ -136,5 +136,5 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("prediction2_t03_k12_b.json","w") as f:
+with open("p_test_t03_k12_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
