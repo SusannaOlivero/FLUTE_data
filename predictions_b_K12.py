@@ -80,7 +80,7 @@ examples = output_text
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
 length_max = token_count + 220
-
+'''
 with open("FLUTE_data/FLUTE_test.json") as f:    
     data = json.load(f)
 
@@ -110,7 +110,7 @@ with open("p_test_t0_k12_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
-
+'''
 with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
 
