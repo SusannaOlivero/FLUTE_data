@@ -66,7 +66,7 @@ del data_train
 ## PROMPT style 2
 with open("FLUTE_data/DREAM/DreamData/dream_test_SE.json") as f:
     data_val = json.load(f)
-
+'''
 # 1.1) Emotion
 output_text = ""
 for item in input_data:
@@ -242,7 +242,7 @@ for i in range(len(data)):
 with open("p_dream_k6_t0_consequence.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
-
+'''
 # 2) Scene Elaboration completed
 pm = "premise-motivation"
 pe = "premise-emotion"
