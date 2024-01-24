@@ -4,9 +4,9 @@ import numpy as np
 import random
 import json
 from transformers import AutoTokenizer, AutoModelForCausalLM
-torch.manual_seed(0)
-random.seed(0)
-np.random.seed(0)
+torch.manual_seed(10)
+random.seed(10)
+np.random.seed(10)
 
 MY_TOKEN = "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" # your_huggings face token
 device = torch.device('cuda')
@@ -80,7 +80,7 @@ examples = output_text
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
 length_max = token_count + 220
-'''
+
 with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
 
@@ -106,11 +106,11 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("p_test_t0_k18_b.json","w") as f:
+with open("p2_test_t0_k18_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
-'''
+
 with open("FLUTE_data/FLUTE_test.json") as f:
     data = json.load(f)
 
@@ -136,5 +136,5 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("p_test_t03_k18_b.json","w") as f:
+with open("p2_test_t03_k18_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
