@@ -66,7 +66,7 @@ del data_train
 ## PROMPT style 2
 with open("FLUTE_data/DREAM/DreamData/dream_test_SE.json") as f:
     data_val = json.load(f)
-
+'''
 # 1.1) Emotion
 output_text = ""
 for item in input_data:
@@ -198,7 +198,7 @@ for i in range(len(data)):
 with open("p_dream_k30_t0_rot.json","w") as f:
     f.write(json.dumps(data,indent=4))
 del data
-
+'''
 # 1.4) Consequence
 output_text = ""
 for item in input_data:
@@ -215,7 +215,7 @@ examples = output_text
 
 tokens = tokenizer.tokenize(str(examples))
 token_count = len(tokens)
-length_max = token_count + 300
+length_max = token_count + 350
 
 data = data_val
 for i in range(len(data)):
