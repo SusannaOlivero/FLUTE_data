@@ -11,7 +11,7 @@ np.random.seed(10)
 MY_TOKEN = "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" # your_huggings face token
 device = torch.device('cuda')
 
-model_tag = "meta-llama/Llama-2-7b-chat-hf"
+model_tag = "meta-llama/Llama-2-7b-hf"
 
 tokenizer = AutoTokenizer.from_pretrained(model_tag, use_auth_token=MY_TOKEN)
 model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN, torch_dtype=torch.float16, device_map=device)
@@ -106,7 +106,7 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("p2_test_t0_k18_b.json","w") as f:
+with open("p3_test_t0_k18_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
@@ -136,5 +136,5 @@ for i in range(len(data)):
     data[i]["predicted_label"] = predictedlabel
     data[i]["model_explanation"] = explanation_
 
-with open("p2_test_t03_k18_b.json","w") as f:
+with open("p3_test_t03_k18_b.json","w") as f:
     f.write(json.dumps(data,indent=4))
