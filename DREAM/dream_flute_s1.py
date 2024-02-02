@@ -27,8 +27,8 @@ for i in range(len(data)):
     input_string = "Premise: "+premise+" Hypothesis: "+hypothesis+". Is there a contradiction or entailment between the premise and hypothesis?"
     input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
     output = model.generate(input_ids, max_length=200)
-    text = tokenizer.batch_decode(output, skip_special_tokens=True)
-    data[i]["output_dream"] = text[0]
+    text = tokenizer.batch_decode(output, skip_special_tokens=True)[0]
+    data[i]["output_dream"] = text
     #["Answer : Contradiction. Explanation : Most people would not be happy to see someone else's new car that they cannot afford because it is way out of their budget"]
     try:
         label = text.split(". Explanation")[0].lstrip()
