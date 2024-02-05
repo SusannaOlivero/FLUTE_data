@@ -183,7 +183,14 @@ for i in range(len(data)):
     hypothesis = data[i]["hypothesis"]
     prompt = "Find if the 'premise' entails or contradicts the 'hypothesis'.\n"
     prompt += "Here you can find some examples of answers:\n"
-    if data[i][]
+    if data[i]["data_type"]=='metaphor'
+        examples = output_text_metaphor
+    elif data[i]["data_type"]=='idiom'
+        examples = output_text_idiom
+    elif data[i]["data_type"]=='simile'
+        examples = output_text_simile
+    elif data[i]["data_type"]=='sarcasm'
+        examples = output_text_sarcasm
     prompt += examples
     request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
     prompt += request
@@ -200,7 +207,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_test_t0_k10_r.json","w") as f:
+with open("p_class_t0_k10.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
@@ -213,6 +220,14 @@ for i in range(len(data)):
     hypothesis = data[i]["hypothesis"]
     prompt = "Find if the 'premise' entails or contradicts the 'hypothesis'.\n"
     prompt += "Here you can find some examples of answers:\n"
+    if data[i]["data_type"]=='metaphor'
+        examples = output_text_metaphor
+    elif data[i]["data_type"]=='idiom'
+        examples = output_text_idiom
+    elif data[i]["data_type"]=='simile'
+        examples = output_text_simile
+    elif data[i]["data_type"]=='sarcasm'
+        examples = output_text_sarcasm
     prompt += examples
     request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
     prompt += request
@@ -229,5 +244,5 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_test_t03_k10_r.json","w") as f:
+with open("p_class_t03_k10.json","w") as f:
     f.write(json.dumps(data,indent=4))
