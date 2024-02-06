@@ -208,7 +208,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_class_t0_k10.json","w") as f:
+with open("p_class_t0_k42.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
@@ -243,5 +243,5 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_class_t03_k10.json","w") as f:
+with open("p_class_t03_k42.json","w") as f:
     f.write(json.dumps(data,indent=4))
