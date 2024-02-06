@@ -4,9 +4,9 @@ import numpy as np
 import random
 import json
 from transformers import AutoTokenizer, AutoModelForCausalLM
-torch.manual_seed(0)
-random.seed(0)
-np.random.seed(0)
+torch.manual_seed(10)
+random.seed(10)
+np.random.seed(10)
 
 MY_TOKEN = "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" # your_huggings face token
 device = torch.device('cuda')
