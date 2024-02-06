@@ -16,7 +16,7 @@ model_tag = "meta-llama/Llama-2-7b-chat-hf"
 tokenizer = AutoTokenizer.from_pretrained(model_tag, use_auth_token=MY_TOKEN)
 model = AutoModelForCausalLM.from_pretrained(model_tag, use_auth_token=MY_TOKEN, torch_dtype=torch.float16, device_map=device)
 
-k = 10
+k = 18
 
 with open("FLUTE_data/FLUTE_train.json") as f:
     data_train = json.load(f)
@@ -208,7 +208,7 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_class_t0_k10.json","w") as f:
+with open("p_class_t0_k18.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
@@ -243,5 +243,5 @@ for i in range(len(data)):
     explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
     data[i]["model_explanation"] = explanation_
 
-with open("p_class_t03_k10.json","w") as f:
+with open("p_class_t03_k18.json","w") as f:
     f.write(json.dumps(data,indent=4))
