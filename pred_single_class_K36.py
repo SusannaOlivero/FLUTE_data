@@ -184,13 +184,13 @@ for i in range(len(data)):
     hypothesis = data[i]["hypothesis"]
     prompt = "Find if the 'premise' entails or contradicts the 'hypothesis'.\n"
     prompt += "Here you can find some examples of answers:\n"
-    if data[i]["data_type"]=='metaphor'
+    if data[i]["data_type"]=='metaphor':
         examples = output_text_metaphor
-    elif data[i]["data_type"]=='idiom'
+    elif data[i]["data_type"]=='idiom':
         examples = output_text_idiom
-    elif data[i]["data_type"]=='simile'
+    elif data[i]["data_type"]=='simile':
         examples = output_text_simile
-    elif data[i]["data_type"]=='sarcasm'
+    elif data[i]["data_type"]=='sarcasm':
         examples = output_text_sarcasm
     prompt += examples
     request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
@@ -219,13 +219,13 @@ for i in range(len(data)):
     hypothesis = data[i]["hypothesis"]
     prompt = "Find if the 'premise' entails or contradicts the 'hypothesis'.\n"
     prompt += "Here you can find some examples of answers:\n"
-    if data[i]["data_type"]=='metaphor'
+    if data[i]["data_type"]=='metaphor':
         examples = output_text_metaphor
-    elif data[i]["data_type"]=='idiom'
+    elif data[i]["data_type"]=='idiom':
         examples = output_text_idiom
-    elif data[i]["data_type"]=='simile'
+    elif data[i]["data_type"]=='simile':
         examples = output_text_simile
-    elif data[i]["data_type"]=='sarcasm'
+    elif data[i]["data_type"]=='sarcasm':
         examples = output_text_sarcasm
     prompt += examples
     request = "\npremise: "+premise+"\nhypothesis: "+hypothesis
