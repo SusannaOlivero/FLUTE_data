@@ -38,10 +38,10 @@ del data_train
 
 # 1. METAPHOR
 input_data_metaphor = []
-input_data += random.sample(data_train_metaphor, k-1)
+input_data_metaphor += random.sample(data_train_metaphor, k-1)
 
-entailment_list = [item for item in input_data if item['label'] == 'Entailment']
-contradiction_list = [item for item in input_data if item['label'] == 'Contradiction']
+entailment_list = [item for item in input_data_metaphor if item['label'] == 'Entailment']
+contradiction_list = [item for item in input_data_metaphor if item['label'] == 'Contradiction']
 if not entailment_list:  # if it's empty
     entailment_data_ = [item for item in data_train_metaphor if item['label'] == 'Entailment']
     input_data_metaphor += random.sample(entailment_data_, 1)
@@ -70,10 +70,10 @@ for item in input_data_metaphor:
 
 # 2. IDIOM
 input_data_idiom = []
-input_data += random.sample(data_train_idiom, k-1)
+input_data_idiom  += random.sample(data_train_idiom, k-1)
 
-entailment_list = [item for item in input_data if item['label'] == 'Entailment']
-contradiction_list = [item for item in input_data if item['label'] == 'Contradiction']
+entailment_list = [item for item in input_data_idiom  if item['label'] == 'Entailment']
+contradiction_list = [item for item in input_data_idiom  if item['label'] == 'Contradiction']
 if not entailment_list:  # if it's empty
     entailment_data_ = [item for item in data_train_idiom if item['label'] == 'Entailment']
     input_data_idiom += random.sample(entailment_data_, 1)
@@ -102,10 +102,10 @@ for item in input_data_idiom:
 
 # 3. SIMILE
 input_data_simile = []
-input_data += random.sample(data_train_simile, k-1)
+input_data_simile += random.sample(data_train_simile, k-1)
 
-entailment_list = [item for item in input_data if item['label'] == 'Entailment']
-contradiction_list = [item for item in input_data if item['label'] == 'Contradiction']
+entailment_list = [item for item in input_data_simile if item['label'] == 'Entailment']
+contradiction_list = [item for item in input_data_simile if item['label'] == 'Contradiction']
 if not entailment_list:  # if it's empty
     entailment_data_ = [item for item in data_train_simile if item['label'] == 'Entailment']
     input_data_simile += random.sample(entailment_data_, 1)
@@ -134,10 +134,10 @@ for item in input_data_simile:
 
 # 4. SARCASM
 input_data_sarcasm = []
-input_data += random.sample(data_train_sarcasm, k-1)
+input_data_sarcasm += random.sample(data_train_sarcasm, k-1)
 
-entailment_list = [item for item in input_data if item['label'] == 'Entailment']
-contradiction_list = [item for item in input_data if item['label'] == 'Contradiction']
+entailment_list = [item for item in input_data_sarcasm if item['label'] == 'Entailment']
+contradiction_list = [item for item in input_data_sarcasm if item['label'] == 'Contradiction']
 if not entailment_list:  # if it's empty
     entailment_data_ = [item for item in data_train_sarcasm if item['label'] == 'Entailment']
     input_data_sarcasm += random.sample(entailment_data_, 1)
