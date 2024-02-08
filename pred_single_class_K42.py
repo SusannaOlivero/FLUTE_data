@@ -204,9 +204,14 @@ for i in range(len(data)):
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
+    else:
+            predictedlabel = "Not given"
     data[i]["predicted_label"] = predictedlabel
-    explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
-    data[i]["model_explanation"] = explanation_
+    try:
+        explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')   
+    except:
+        explanation_ = "Not given"
+    data[i]["model_explanation"] = explanation_    
 
 with open("p_class_t0_k42.json","w") as f:
     f.write(json.dumps(data,indent=4))
@@ -239,9 +244,14 @@ for i in range(len(data)):
             predictedlabel = "Entailment"
     elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
+    else:
+            predictedlabel = "Not given"
     data[i]["predicted_label"] = predictedlabel
-    explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')
-    data[i]["model_explanation"] = explanation_
+    try:
+        explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')   
+    except:
+        explanation_ = "Not given"
+    data[i]["model_explanation"] = explanation_ 
 
 with open("p_class_t03_k42.json","w") as f:
     f.write(json.dumps(data,indent=4))
