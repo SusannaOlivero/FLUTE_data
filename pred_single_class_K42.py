@@ -173,7 +173,7 @@ token_count_simile = len(tokens_simile)
 tokens_sarcasm = tokenizer.tokenize(str(output_text_sarcasm))
 token_count_sarcasm = len(tokens_sarcasm)
 token_count = max(token_count_metaphor, token_count_idiom, token_count_simile, token_count_sarcasm)
-length_max = token_count + 220
+length_max = token_count + 300
 
 with open("FLUTE_data/FLUTE_test.json") as f:
     data_test = json.load(f)
