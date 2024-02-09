@@ -205,6 +205,8 @@ for i in range(len(data)):
             predictedlabel = "Entailment"
         elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
+        else:
+            predictedlabel = "Not given"
         explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')   
     except:
         predictedlabel = "Not given"
@@ -244,6 +246,8 @@ for i in range(len(data)):
             predictedlabel = "Entailment"
         elif "Contradicts." in label_:
             predictedlabel = "Contradiction"
+        else:
+            predictedlabel = "Not given"
         explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')   
     except:
         predictedlabel = "Not given"
