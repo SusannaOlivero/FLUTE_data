@@ -199,18 +199,17 @@ for i in range(len(data)):
     generate_ids = model.generate(**inputs, do_sample=False, temperature=0, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
-    label_, explanation_ = text.split("Explanation:", 1)
-    if "Entails." in label_:
-            predictedlabel = "Entailment"
-    elif "Contradicts." in label_:
-            predictedlabel = "Contradiction"
-    else:
-            predictedlabel = "Not given"
-    data[i]["predicted_label"] = predictedlabel
     try:
+        label_, explanation_ = text.split("Explanation:", 1)
+        if "Entails." in label_:
+            predictedlabel = "Entailment"
+        elif "Contradicts." in label_:
+            predictedlabel = "Contradiction"
         explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')   
     except:
+        predictedlabel = "Not given"
         explanation_ = "Not given"
+    data[i]["predicted_label"] = predictedlabel    
     data[i]["model_explanation"] = explanation_    
 
 with open("p_class_t0_k42.json","w") as f:
@@ -239,18 +238,17 @@ for i in range(len(data)):
     generate_ids = model.generate(**inputs, do_sample=True, temperature=0.3, top_k=10, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, max_length=length_max)
     text = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
     text = text.replace(prompt, '').strip()
-    label_, explanation_ = text.split("Explanation:", 1)
-    if "Entails." in label_:
-            predictedlabel = "Entailment"
-    elif "Contradicts." in label_:
-            predictedlabel = "Contradiction"
-    else:
-            predictedlabel = "Not given"
-    data[i]["predicted_label"] = predictedlabel
     try:
+        label_, explanation_ = text.split("Explanation:", 1)
+        if "Entails." in label_:
+            predictedlabel = "Entailment"
+        elif "Contradicts." in label_:
+            predictedlabel = "Contradiction"
         explanation_ = explanation_.split("premise:")[0].lstrip().rstrip('\n')   
     except:
+        predictedlabel = "Not given"
         explanation_ = "Not given"
+    data[i]["predicted_label"] = predictedlabel    
     data[i]["model_explanation"] = explanation_ 
 
 with open("p_class_t03_k42.json","w") as f:
