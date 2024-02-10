@@ -177,7 +177,7 @@ length_max = token_count + 300
 
 with open("FLUTE_data/FLUTE_test.json") as f:
     data_test = json.load(f)
-    
+'''    
 data = data_test
 for i in range(len(data)):
     premise = data[i]["premise"]
@@ -218,7 +218,7 @@ with open("p_class_t0_k42.json","w") as f:
     f.write(json.dumps(data,indent=4))
 
 del data
-
+'''
 data = data_test
 for i in range(len(data)):
     premise = data[i]["premise"]
